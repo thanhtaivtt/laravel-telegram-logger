@@ -9,7 +9,7 @@ composer require thanhtaivtt/laravel-telegram-logger
 
 # Config
 
-- Add this code to the `config/logging.php`
+- Add this code to the `config/logging.php` as a new channel:
 
 ```php
 'telegram' => [
@@ -61,3 +61,7 @@ If you want to send the log in all other than local environments, you can set it
             'send_log' => env('APP_ENV') !== 'local',
         ],
 ```
+
+# How to create Telegram Bot?
+
+![Laravel Telegram Logger](https://static.toidicode.com/laravel-telegram-logger.gif "Laravel Telegram Logger")
