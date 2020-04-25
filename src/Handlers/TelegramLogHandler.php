@@ -41,7 +41,7 @@ class TelegramLogHandler extends AbstractProcessingHandler
      * @param LoggerData $loggerData
      * @param array $config
      */
-    public function __construct( $loggerData, array $config)
+    public function __construct($loggerData, array $config)
     {
         parent::__construct($config['level'] ?? Logger::DEBUG, $config['bubble'] ?? true);
         $this->loggerData = $loggerData;
@@ -53,7 +53,13 @@ class TelegramLogHandler extends AbstractProcessingHandler
      */
     protected function write(array $record): void
     {
-        $this->send($this->messageBuilder($record['formatted']));
+        if (empty($this->config['api_key']) || empty($this->config['chat_id'])) {
+            throw new \RuntimeException('Please set up api_key or chat_id in config/logging.php');
+        }
+
+        if (($this->config['send_log'] ?? false)) {
+            $this->send($this->messageBuilder($record['formatted']));
+        }
     }
 
     /**
@@ -88,7 +94,7 @@ class TelegramLogHandler extends AbstractProcessingHandler
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
             'text' => $message,
             'parse_mode' => 'HTML',
-            'chat_id' => $this->config['channel_id'],
+            'chat_id' => $this->config['chat_id'],
         ]));
 
         $result = curl_exec($ch);
@@ -98,5 +104,4 @@ class TelegramLogHandler extends AbstractProcessingHandler
             throw new \RuntimeException('Telegram API error. Description: ' . $result['description']);
         }
     }
-
 }

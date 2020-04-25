@@ -1,11 +1,13 @@
 {
     "name": "thanhtaivtt/laravel-telegram-logger",
-    "description": "Laravel logger to telegram bot or channel",
+    "description": "Laravel Send error log to Telegram Bot, Channel",
     "type": "library",
     "require": {
         "php": "^7.2",
         "ext-json": "*",
-        "ext-curl": "*"
+        "ext-curl": "*",
+        "monolog/monolog": "^2.0",
+        "laravel/framework": "^5.7."
     },
     "license": "MIT",
     "authors": [
