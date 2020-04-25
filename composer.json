@@ -1,0 +1,22 @@
+{
+    "name": "thanhtaivtt/laravel-telegram-logger",
+    "description": "Laravel logger to telegram bot or channel",
+    "type": "library",
+    "require": {
+        "php": "^7.2",
+        "ext-json": "*",
+        "ext-curl": "*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "thanhtaivtt",
+            "email": "thanhtai96nd@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Thanhtaivtt\\TelegramLogger\\": "src/"
+        }
+    }
+}
