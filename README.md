@@ -37,8 +37,8 @@ Eg:
 - Define Telegram Bot Token and chat id on `.env`
 
 ```bash
-TELEGRAM_API_KEY=617786012:AAGTlomrzNq4eQpt54VWEfqYW5Ud-EWp5x0
-TELEGRAM_CHAT_ID=@tdc_logging
+TELEGRAM_API_KEY=BOT_TOKEN
+TELEGRAM_CHAT_ID=BOT_ID
 TELEGRAM_SEND_LOG=true
 ```
 
