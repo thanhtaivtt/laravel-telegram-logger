@@ -70,7 +70,7 @@ class TelegramLogHandler extends AbstractProcessingHandler
      */
     protected function messageBuilder($rawMessage): string
     {
-        $message = "<b>[Laravel Telegram Logger]</b> \r\n";
+        $message = "<b>🧨[Laravel Telegram Logger]</b> \r\n";
         $message .= "METHOD: <b>{$this->loggerData->requestMethod()}</b> \r\n";
         $message .= "URL:            {$this->loggerData->requestUrl()} \r\n";
         $message .= "IP:               {$this->loggerData->ipAddress()} \r\n";
