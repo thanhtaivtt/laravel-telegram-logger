@@ -61,7 +61,19 @@ class LoggerData implements \Thanhtaivtt\TelegramLogger\Contracts\LoggerData
      */
     public function requestMethod(): ?string
     {
-        return $this->request->method() ?? self::DEFAULT_METHOD;
+        if ($this->isCommand()) {
+            return self::DEFAULT_METHOD;
+        }
+
+        return $this->request->method();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function isCommand(): bool
+    {
+        return strpos(php_sapi_name(), 'cli') !== false;
     }
 
     /**

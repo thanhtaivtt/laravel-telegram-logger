@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Thanhtaivtt\TelegramLogger\Handlers;
 
-use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Logger;
-use Thanhtaivtt\TelegramLogger\LoggerData;
+use Monolog\Handler\AbstractProcessingHandler;
+use \Thanhtaivtt\TelegramLogger\Contracts\LoggerData;
 
 /**
  * Handler send logs to Telegram using Telegram Bot API.
@@ -41,7 +41,7 @@ class TelegramLogHandler extends AbstractProcessingHandler
      * @param LoggerData $loggerData
      * @param array $config
      */
-    public function __construct($loggerData, array $config)
+    public function __construct(LoggerData $loggerData, array $config)
     {
         parent::__construct($config['level'] ?? Logger::DEBUG, $config['bubble'] ?? true);
         $this->loggerData = $loggerData;
@@ -73,7 +73,11 @@ class TelegramLogHandler extends AbstractProcessingHandler
         $message = "<b>🧨[Laravel Telegram Logger]</b> \r\n";
         $message .= "METHOD: <b>{$this->loggerData->requestMethod()}</b> \r\n";
         $message .= "URL:            {$this->loggerData->requestUrl()} \r\n";
-        $message .= "IP:               {$this->loggerData->ipAddress()} \r\n";
+
+        if (!$this->loggerData->isCommand()) {
+            $message .= "IP:               {$this->loggerData->ipAddress()} \r\n";
+        }
+
         $message .= "<pre>{$rawMessage}</pre>";
 
         return  $message;
@@ -95,6 +99,7 @@ class TelegramLogHandler extends AbstractProcessingHandler
             'text' => $message,
             'parse_mode' => 'HTML',
             'chat_id' => $this->config['chat_id'],
+            'disable_web_page_preview' => $this->config['disable_web_page_preview'] ?? true,
         ]));
 
         $result = curl_exec($ch);

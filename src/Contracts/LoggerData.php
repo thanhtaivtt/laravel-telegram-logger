@@ -6,21 +6,28 @@ namespace Thanhtaivtt\TelegramLogger\Contracts;
 interface LoggerData
 {
     /**
-     * Get request URL.
+     * Get the request URL.
      *
      * @return string
      */
     public function requestUrl(): ?string;
 
     /**
-     * Get request method.
+     * Get the request method.
      *
      * @return string|null
      */
     public function requestMethod(): ?string;
 
     /**
-     * Get ip address.
+     * Check the error is raised on command.
+     *
+     * @return bool
+     */
+    public function isCommand(): bool;
+
+    /**
+     * Get the ip address.
      *
      * @return string|null
      */
