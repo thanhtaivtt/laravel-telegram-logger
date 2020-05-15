@@ -7,7 +7,7 @@
         "ext-json": "*",
         "ext-curl": "*",
         "monolog/monolog": "^1.12",
-        "laravel/framework": "^5.7."
+        "laravel/framework": ">5.7."
     },
     "license": "MIT",
     "authors": [
