@@ -53,7 +53,7 @@ class LoggerData implements \Thanhtaivtt\TelegramLogger\Contracts\LoggerData
      */
     public function requestUrl(): ?string
     {
-        return $this->url->current() ?? self::DEFAULT_URL;
+        return $this->url->full() ?? self::DEFAULT_URL;
     }
 
     /**
