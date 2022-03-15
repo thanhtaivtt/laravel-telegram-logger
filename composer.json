@@ -3,7 +3,7 @@
     "description": "Laravel Send error log to Telegram Bot, Channel",
     "type": "library",
     "require": {
-        "php": "^7.2",
+        "php": "^7.2|^8.0|^8.1",
         "ext-json": "*",
         "ext-curl": "*",
         "laravel/framework": ">5.7."
